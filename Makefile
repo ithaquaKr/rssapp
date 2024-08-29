@@ -1,3 +1,15 @@
-.PHONY: run
+.PHONY: run build test
+
+# ==============================================================================
+# Main
+
 run:
-	go build main.go && ./main
+	go run ./cmd/api/main.go
+
+build:
+	go build ./cmd/api/main.go
+
+test:
+	go test -cover ./...
+
+
