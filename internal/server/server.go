@@ -12,7 +12,7 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
-	"github.com/ithaquaKr/rssapp/pkg/config"
+	"github.com/ithaquaKr/rssapp/config"
 )
 
 const (
@@ -33,9 +33,8 @@ func NewServer(cfg *config.Config) *Server {
 }
 
 func (s *Server) Run() {
-	addr := s.cfg.App.Host + ":" + s.cfg.App.Port // TODO: Refactor that
 	server := &http.Server{
-		Addr:           addr,
+		Addr:           s.cfg.App.Port,
 		ReadTimeout:    time.Second * ReadTimeout,
 		WriteTimeout:   time.Second * WriteTimeout,
 		MaxHeaderBytes: maxHeaderBytes,
@@ -44,7 +43,7 @@ func (s *Server) Run() {
 	serverCtx, serverStopCtx := context.WithCancel(context.Background())
 
 	go func(serverCtx context.Context) {
-		fmt.Printf("Server is listening on: %s", addr)
+		fmt.Printf("Server is listening on :%s", s.cfg.App.Port)
 		err := server.ListenAndServe()
 		if err != nil && err != http.ErrServerClosed {
 			log.Fatalf("Error while starting Server: %s", err)

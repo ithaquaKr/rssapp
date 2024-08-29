@@ -1,0 +1,21 @@
+app:
+  AppVersion: 1.0.0
+  Port: :8080
+  PprofPort: :5555
+  Mode: Development
+  JwtSecretKey: secretkey
+  CookieName: jwt-token
+  ReadTimeout: 5
+  WriteTimeout: 5
+  SSL: true
+  CtxDefaultTimeout: 12
+  CSRF: true
+  Debug: false
+
+postgres:
+  PostgresqlHost: 127.0.0.1
+  PostgresqlPort: 5432
+  PostgresqlUser: backend
+  PostgresqlPassword: password
+  PostgresqlDbname: backend
+  PostgresqlSslmode: false
